@@ -9,7 +9,7 @@ const Home = () => {
 
 	useEffect(() => {
 		try {
-			const json = JSON.parse(JSON.stringify(jsonBody));
+			const json = JSON.parse(jsonBody.replace(/(\r\n|\n|\r)/gm, ''));
 			const hash = CryptoJS.SHA256(`${JSON.stringify(json)}${secretKey}`);
 			setAuthenBody(hash.toString());
 		} catch (ex) {
